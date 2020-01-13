@@ -19,22 +19,17 @@ Vue.prototype.deleteRequest = deleteRequest
 Vue.prototype.putRequest = putRequest
 
 router.beforeEach((to, from, next) => {
-  if(to.name == 'Login') {
+  if(to.path == '/') {
     next();
-    return;
-  }
-  var name = store.state.user.name;
-  if(name == '未登录') {
-    if(to.requireAuth || to.name == null) {
-      next({path: '/', query: {redirect: to.path}});
-    }
-    else {
-      next();
-    }
   }
   else {
-    initMenu(router, store);
-    next();
+    if(window.sessionStorage.getItem("user")) {
+      initMenu(router, store);
+      next();    //进入路由
+    }
+    else {
+      next('/?redirect=' + to.path);    //进入页面
+    }
   }
 })
 

@@ -5,12 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        user: {
-            name: '',
-            userface: '',
-            username: '',
-            roles: []
-        },
+        user: JSON.parse(window.sessionStorage.getItem("user")),
         routes: []
     },
     mutations: {
@@ -20,8 +15,8 @@ export default new Vuex.Store({
         logout(state) {
             state.routes = [];
         },
-        initMenu(state, menus) {
-            state.routes = menus;
+        initMenu(state, data) {
+            state.routes = data;
         }
     }
 })
