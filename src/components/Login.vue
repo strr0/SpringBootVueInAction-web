@@ -22,8 +22,8 @@
                     password: [{required: true, message: '请输入密码', trigger: 'blur'}]
                 },
                 loginForm: {
-                    username: '',
-                    password: ''
+                    username: 'admin',
+                    password: 'password'
                 },
                 checked: true,
                 loading: false
@@ -34,7 +34,7 @@
                 this.$refs.loginForm.validate(valid => {
                     if(valid) {
                         this.loading = true;
-                        this.postRequest('/login', this.loginForm).then(resp => {
+                        this.postKeyValueRequest('/login', this.loginForm).then(resp => {
                             this.loading = false;
                             if(resp && resp.status == 200) {
                                 this.$store.commit('login', resp.data.obj);
