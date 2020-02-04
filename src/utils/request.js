@@ -44,48 +44,35 @@ axios.interceptors.response.use(
     }
 )
 
-export const postRequest = (url, params) => {
+export const postKeyValueRequest = (url, params) => {
     return axios({
         method: 'post',
         url: url,
         data: params,
-        transformRequest: [function(data) {
-            let ret = ''
-            for(let it in data) {
-                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+        transformRequest: [function (data) {
+            let ret = '';
+            for (let i in data) {
+                ret += encodeURIComponent(i) + '=' + encodeURIComponent(data[i]) + '&'
             }
-            return ret
+            return ret;
         }],
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     });
 }
-export const uploadFileRequest = (url, params) => {
+export const postRequest = (url, params) => {
     return axios({
         method: 'post',
         url: url,
         data: params,
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
     });
 }
 export const putRequest = (url, params) => {
     return axios({
         method: 'put',
         url: url,
-        data: params,
-        transformRequest: [function(data) {
-            let ret = ''
-            for(let it in data) {
-                ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-            }
-            return ret
-        }],
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
+        data: params
     });
 }
 export const getRequest = (url) => {
