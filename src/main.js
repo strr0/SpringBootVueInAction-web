@@ -5,14 +5,16 @@ import router from './router'
 import store from './store'
 import App from './App.vue'
 
+import {postKeyValueRequest} from './utils/request'
 import {getRequest} from './utils/request'
 import {postRequest} from './utils/request'
 import {deleteRequest} from './utils/request'
 import {putRequest} from './utils/request'
-import { initMenu } from './utils/menu'
+import {initMenu} from './utils/menu'
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
+Vue.prototype.postKeyValueRequest = postKeyValueRequest
 Vue.prototype.getRequest = getRequest
 Vue.prototype.postRequest = postRequest
 Vue.prototype.deleteRequest = deleteRequest
